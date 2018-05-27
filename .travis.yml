@@ -15,4 +15,6 @@ addons:
     packages: bwbasic
 
 
-script: bwbasic oregon-trail-1975.bas <test.txt
+script: 
+  - bwbasic oregon-trail-1975.bas <test.txt
+  - bwbasic oregon-trail-1978.bas <test78.txt
