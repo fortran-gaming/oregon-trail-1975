@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/scivision/oregon-trail-1975-basic.svg?branch=master)](https://travis-ci.com/scivision/oregon-trail-1975-basic)
+
 # Oregon Trail 1975
 
 ```basic

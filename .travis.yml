@@ -1,0 +1,18 @@
+language: generic
+fast_finish: true
+
+os:
+  - linux
+  
+group: travis_latest
+
+
+git:
+  depth: 3
+
+addons:
+  apt:
+    packages: bwbasic
+
+
+script: bwbasic oregon-trail-1975.bas <test.txt
