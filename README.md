@@ -25,7 +25,7 @@ REM July-August 1978 issue of Creative Computing.
 50 REM CDC CYBER 70/73-26 BASIC 3-1
 ```
 
-Very lightly modified to work with modern platform-independent ANSI BASIC interpreter such as `bwbasic`, FreeBASIC, etc.
+Very lightly modified to work with modern platform-independent ANSI BASIC interpreter such as `bwbasic`
 
 1978 version: https://github.com/clintmoyer/oregon-trail  carefully OCR'd and updated by @clintmoyer, tweaked by @scivision for ANSI BASIC compliance
 
@@ -41,3 +41,8 @@ or other favorite BASIC interpreter.
 
 * 1975: `bwbasic oregon-trail-1975.bas`
 * 1978: `bwbasic oregon-trail-1978.bas`
+
+
+## Notes
+Because the BASIC dialect used is old 1970s unstructured style, a very basic compiler is needed.
+Because of this messy style, it is not worth fixing, but rather if someone wanted to preserve in a modern reinterpretation of classic style, I would suggest using Fortran with a module dedicated to registers for game state.

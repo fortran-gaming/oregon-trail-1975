@@ -1,20 +1,28 @@
-language: generic
-fast_finish: true
-
-os:
-  - linux
-  
+language: c
+sudo: required
+dist: xenial
 group: travis_latest
-
 
 git:
   depth: 3
+  quiet: true
+
+os:
+  - linux
 
 addons:
   apt:
     packages: bwbasic
+    
+before_install:
+  - if [[ $TRAVIS_OS_NAME == osx ]]; then
+      wget -O fbc.tar.gz https://sourceforge.net/projects/fbc/files/Binaries%20-%20Linux/FreeBASIC-1.05.0-linux-x86_64.tar.gz/download;
+      tar -xf fbc.tar.gz;
+      ./FreeBASIC*/install.sh -i ~/.local;
+    fi
+    
+  - export PATH=$HOME/.local/bin:$PATH
 
-
-script: 
+script:
   - bwbasic oregon-trail-1975.bas <test.txt
   - bwbasic oregon-trail-1978.bas <test78.txt
