@@ -1,6 +1,4 @@
-language: c
-sudo: required
-dist: xenial
+language: generic
 group: travis_latest
 
 git:
@@ -24,5 +22,5 @@ before_install:
   - export PATH=$HOME/.local/bin:$PATH
 
 script:
-  - bwbasic oregon-trail-1975.bas <test.txt
-  - bwbasic oregon-trail-1978.bas <test78.txt
+  - bwbasic oregon-trail-1975.bas <tests/test.txt
+  - bwbasic oregon-trail-1978.bas <tests/test78.txt

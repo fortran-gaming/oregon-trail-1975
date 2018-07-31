@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.com/scivision/oregon-trail-1975-basic.svg?branch=master)](https://travis-ci.com/scivision/oregon-trail-1975-basic)
+[![Build Status](https://travis-ci.com/fortran-gaming/oregon-trail-1975-basic.svg?branch=master)](https://travis-ci.com/fortran-gaming/oregon-trail-1975-basic)
 
 # Oregon Trail 1975 & 1978
-
 
 
 ```basic
@@ -27,7 +26,6 @@ REM July-August 1978 issue of Creative Computing.
 
 Very lightly modified to work with modern platform-independent ANSI BASIC interpreter such as `bwbasic`
 
-1978 version: https://github.com/clintmoyer/oregon-trail  carefully OCR'd and updated by @clintmoyer, tweaked by @scivision for ANSI BASIC compliance
 
 
 ## Prereq
@@ -46,3 +44,6 @@ or other favorite BASIC interpreter.
 ## Notes
 Because the BASIC dialect used is old 1970s unstructured style, a very basic compiler is needed.
 Because of this messy style, it is not worth fixing, but rather if someone wanted to preserve in a modern reinterpretation of classic style, I would suggest using Fortran with a module dedicated to registers for game state.
+
+[1978 version](https://github.com/clintmoyer/oregon-trail) that's in this repo was carefully OCR'd and updated by @clintmoyer, tweaked by @scivision for ANSI BASIC compliance
+
