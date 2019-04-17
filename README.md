@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/fortran-gaming/oregon-trail-1975-basic.svg?branch=master)](https://travis-ci.com/fortran-gaming/oregon-trail-1975-basic)
+[![Build Status](https://travis-ci.com/fortran-gaming/oregon-trail-1975.svg?branch=master)](https://travis-ci.com/fortran-gaming/oregon-trail-1975)
 
 # Oregon Trail 1975 & 1978
 
