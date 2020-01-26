@@ -1,7 +1,10 @@
-[![Build Status](https://travis-ci.com/fortran-gaming/oregon-trail-1975.svg?branch=master)](https://travis-ci.com/fortran-gaming/oregon-trail-1975)
-
 # Oregon Trail 1975 & 1978
 
+[![Actions Status](https://github.com/fortran-gaming/oregon-trail-1975/workflows/ci_basic/badge.svg)](https://github.com/fortran-gaming/oregon-trail-1975/actions)
+
+From
+[Creative Computing 1978](https://ia800307.us.archive.org/3/items/creativecomputing-1978-05/Creative_Computing_v04_n03_1978_May-June.pdf)
+page 132ff.
 
 ```basic
 REM  MINNESOTA EDUCATIONAL COMPUTING CONSORTIUM STAFF
@@ -26,9 +29,8 @@ REM July-August 1978 issue of Creative Computing.
 
 Very lightly modified to work with modern platform-independent ANSI BASIC interpreter such as `bwbasic`
 
-
-
 ## Prereq
+
 ```sh
 apt install bwbasic
 ```
@@ -40,10 +42,17 @@ or other favorite BASIC interpreter.
 * 1975: `bwbasic oregon-trail-1975.bas`
 * 1978: `bwbasic oregon-trail-1978.bas`
 
+## Provenance
+
+1978 version that's in this repo was originally OCR'd by
+[@clintmoyer](https://github.com/clintmoyer/oregon-trail),
+tweaked by @scivision for ANSI BASIC compliance,
+and further corrected by pull request contributors:
+
+* @pau101
+* @philjonas
 
 ## Notes
+
 Because the BASIC dialect used is old 1970s unstructured style, a very basic compiler is needed.
 Because of this messy style, it is not worth fixing, but rather if someone wanted to preserve in a modern reinterpretation of classic style, I would suggest using Fortran with a module dedicated to registers for game state.
-
-[1978 version](https://github.com/clintmoyer/oregon-trail) that's in this repo was carefully OCR'd and updated by @clintmoyer, tweaked by @scivision for ANSI BASIC compliance
-

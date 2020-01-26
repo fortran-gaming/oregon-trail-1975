@@ -1,0 +1,17 @@
+name: ci_basic
+
+on: [push, pull_request]
+
+jobs:
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - run: |
+        sudo apt -yq update > /dev/null
+        sudo apt install -yq --no-install-recommends bwbasic > /dev/null
+
+    - run: bwbasic oregon-trail-1975.bas < tests/test.txt
+    - run: bwbasic oregon-trail-1978.bas < tests/test78.txt
