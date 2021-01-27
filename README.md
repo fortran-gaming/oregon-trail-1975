@@ -25,7 +25,7 @@ or other favorite BASIC interpreter.
 
 ## Provenance
 
-### 1978 version 
+### 1978 version
 
 From
 [Creative Computing 1978](https://ia800307.us.archive.org/3/items/creativecomputing-1978-05/Creative_Computing_v04_n03_1978_May-June.pdf)

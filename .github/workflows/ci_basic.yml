@@ -1,6 +1,9 @@
 name: ci_basic
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - "**/*.bas"
 
 jobs:
 
