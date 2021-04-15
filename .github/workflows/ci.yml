@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - "**/*.bas"
+      - "**/*.f"
+      - "**/*.f90"
 
 jobs:
 

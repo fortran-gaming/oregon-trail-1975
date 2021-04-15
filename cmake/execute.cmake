@@ -1,0 +1,4 @@
+execute_process(COMMAND ${exe}
+INPUT_FILE ${in_file}
+TIMEOUT 10
+COMMAND_ERROR_IS_FATAL ANY)
