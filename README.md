@@ -10,15 +10,13 @@ REM  CURRENT VERSION - 3/27/75
 
 Very lightly modified to work with modern platform-independent ANSI BASIC interpreter such as `bwbasic`
 
-## Prereq
+## Run
 
 ```sh
 apt install bwbasic
 ```
 
 or other favorite BASIC interpreter.
-
-## Run
 
 * 1975: `bwbasic oregon-trail-1975.bas`
 * 1978: `bwbasic oregon-trail-1978.bas`
@@ -49,10 +47,11 @@ REM July-August 1978 issue of Creative Computing.
 * OCR'd by [@clintmoyer](https://github.com/clintmoyer/oregon-trail),
 * tweaked by @scivision for ANSI BASIC compliance,
 
-Further corrected by pull request contributors:
+Further corrected by contributors:
 
 * @pau101
 * @philjonas
+* @interkosmos
 
 ### 1975 version
 
