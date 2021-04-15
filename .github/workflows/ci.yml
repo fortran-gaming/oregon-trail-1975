@@ -6,6 +6,7 @@ on:
       - "**/*.bas"
       - "**/*.f"
       - "**/*.f90"
+      - ".github/workflows/ci.yml"
 
 jobs:
 
@@ -18,5 +19,6 @@ jobs:
         sudo apt -yq update > /dev/null
         sudo apt install -yq --no-install-recommends bwbasic > /dev/null
 
-    - run: bwbasic oregon-trail-1975.bas < tests/test.txt
-    - run: bwbasic oregon-trail-1978.bas < tests/test78.txt
+    - run: cmake -B build
+    - run: cmake --build build
+    - run: ctest --test-dir build
