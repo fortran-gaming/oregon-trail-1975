@@ -143,7 +143,6 @@ C
 C     SHOOT STUFF BY LETTING THE PLAYER ENTER INSTANCES OF ONOMATOPOEIA.
 C
       INTEGER, intent(in) :: ILEVL
-      INTEGER     TIME
       CHARACTER(4) :: A
       character(4), parameter :: S(4) = [character(4) ::
      &  'BANG','BLAM','POW','WHAM']
@@ -504,30 +503,32 @@ C
       R = 100 * RAND()
    20 IEVTC = IEVTC + 1
       IF (IEVTC < 16 .AND. R > IEVENT(IEVTC)) GOTO 20
-      IF (IEVTC == 1) THEN
+
+      select case(IEVTC)
+      case (1)
         PRINT *,'WAGON BREAKS DOWN -- LOSE TIME AND SUPPLIES FIXING IT.'
         ITMIL = ITMIL - 15 - INT(5 * RAND())
         IMISC = IMISC - 8
-      ELSE IF (IEVTC == 2) THEN
+      case (2)
         PRINT *,'OX INJURES LEG -- SLOWS YOU DOWN REST OF TRIP.'
         ITMIL = ITMIL - 25
         IANIM = IANIM - 20
-      ELSE IF (IEVTC == 3) THEN
+      case (3)
         PRINT *,'BAD LUCK -- YOUR DAUGHTER BROKE HER ARM.'
         PRINT *,'YOU HAD TO STOP AND USE SUPPLIES TO MAKE A SLING.'
         ITMIL = ITMIL - 5 - INT(4 * RAND())
         IMISC = IMISC - 2 - INT(3 * RAND())
-      ELSE IF (IEVTC == 4) THEN
+      case (4)
         PRINT *,'OX WANDERS OFF -- SPEND TIME LOOKING FOR IT.'
         ITMIL = ITMIL - 17
-      ELSE IF (IEVTC == 5) THEN
+      case (5)
         PRINT *,'YOUR SON GETS LOST -- SPEND HALF THE DAY LOOKING FOR ',
      &          'HIM.'
         ITMIL = ITMIL - 10
-      ELSE IF (IEVTC == 6) THEN
+      case (6)
         PRINT *,'UNSAFE WATER -- LOSE TIME LOOKING FOR CLEAN SPRING.'
         ITMIL = ITMIL - INT(10 * RAND()) - 2
-      ELSE IF (IEVTC == 7) THEN
+      case (7)
         IF (ITMIL > 950) THEN
           PRINT *,'COLD WEATHER -- BRRRRRRR!'
           IF (ICLTH > 22 + 4 * RAND()) THEN
@@ -544,7 +545,7 @@ C
           IMISC = IMISC - 15
           ITMIL = ITMIL - INT(10 * RAND()) - 5
         END IF
-      ELSE IF (IEVTC == 8) THEN
+      case (8)
         PRINT *,'BANDITS ATTACK.'
         IBANGT = SHOOT(ILEVL)
         IAMMU = IAMMU - 20 * IBANGT
@@ -563,17 +564,17 @@ C
           PRINT *,'QUICKEST DRAW OUTSIDE OF DODGE CITY!!'
           PRINT *,'YOU GOT ',Q,'EM!'
         END IF
-      ELSE IF (IEVTC == 9) THEN
+      case (9)
         PRINT *,'THERE WAS A FIRE IN YOUR WAGON -- FOOD AND SUPPLIES ',
      &          'DAMAGE!'
         IFOOD = IFOOD - 40
         IAMMU = IAMMU - 400
         IMISC = IMISC - INT(RAND() * 8) - 3
         ITMIL = ITMIL - 15
-      ELSE IF (IEVTC == 10) THEN
+      case (10)
         PRINT *,'LOSE YOUR WAY IN HEAVY FOG -- TIME IS LOST.'
         ITMIL = ITMIL - 10 - INT(5 * RAND())
-      ELSE IF (IEVTC == 11) THEN
+      case (11)
         PRINT *,'YOU KILLED A POISONOUS SNAKE AFTER IT BIT YOU.'
         IAMMU = IAMMU - 10
         IMISC = IMISC - 5
@@ -581,13 +582,13 @@ C
           PRINT *,'YOU DIE OF SNAKEBITE SINCE YOU HAVE NO MEDICINE.'
           CALL DIE()
         END IF
-      ELSE IF (IEVTC == 12) THEN
+      case (12)
         PRINT *,'WAGON GETS SWAMPED FORDING RIVER -- LOSE FOOD AND ',
      &          'CLOTHES.'
         IFOOD = IFOOD - 30
         ICLTH = ICLTH - 20
         ITMIL = ITMIL - 20 - INT(20 * RAND())
-      ELSE IF (IEVTC == 13) THEN
+      case (13)
         PRINT *,'WILD ANIMALS ATTACK!!'
         IF (IAMMU <= 39) THEN
           PRINT *,'YOU WERE TOO LOW ON BULLETS -- THE WOLVES ',
@@ -606,21 +607,22 @@ C
         IAMMU = IAMMU - 20 * IBANGT
         ICLTH = ICLTH - IBANGT * 4
         IFOOD = IFOOD - IBANGT * 8
-      ELSE IF (IEVTC == 14) THEN
+      case (14)
         PRINT *,'HAIL STORM -- SUPPLIES DAMAGED.'
         ITMIL = ITMIL - 5 - INT(RAND() * 3)
         IAMMU = IAMMU - 200
         IMISC = IMISC - 4 - INT(RAND() * 3)
-      ELSE IF (IEVTC == 15) THEN
+      case (15)
         IF ((IEATS == 1) .OR.
      &      (IEATS == 2 .AND. RAND() > 0.25) .OR.
      &      (IEATS == 3 .AND. RAND() < 0.5)) THEN
           CALL SICK(IEATS, ITMIL, IMISC, IFILL, IFINJ)
         END IF
-      ELSE IF (IEVTC == 16) THEN
+      case (16)
         PRINT *,'HELPFUL INDIANS SHOW YOU WERE TO FIND MORE FOOD.'
         IFOOD = IFOOD + 14
-      END IF
+      END select
+
       IF (ITMIL > 950) THEN
         R = 9 - ((ITMIL /100 - 15)**2 / ((ITMIL/100 - 15)**2 + 12))
         IF (RAND() * 10 <= R) THEN
@@ -683,7 +685,9 @@ C
       PRINT *,'(1) RUN  (2) ATTACK  (3) CONTINUE  (4) CIRCLE WAGONS'
       IF (RAND() <= .2) IHORF = 1 - IHORF
       ISELEC = INPUT(1, 4)
-      IF (ISELEC == 1) THEN
+
+      select case (iselec)
+      case (1)
         IF (IHORF == 1) THEN
           ITMIL = ITMIL + 15
           IANIM = IANIM - 10
@@ -693,7 +697,7 @@ C
           IAMMU = IAMMU - 150
           IANIM = IANIM - 40
         END IF
-      ELSE IF (ISELEC == 2 .OR. ISELEC == 4) THEN
+      case (2,4)
         IBANGT = SHOOT(ILEVL)
         IF (ISELEC == 2) THEN
           IAMMU = IAMMU - IBANGT * 40 - 80
@@ -710,14 +714,15 @@ C
           PRINT *,'YOU HAVE TO SEE OL',Q,' DOC BLANCHARD.'
           IFINJ = 1
         END IF
-      ELSE IF (ISELEC == 3) THEN
+      case (3)
         IF (RAND() > .8) THEN
           PRINT *,'THEY DID NOT ATTACK.'
           RETURN
         END IF
         IAMMU = IAMMU - 150
         IMISC = IMISC - 15
-      END IF
+      END select
+
       IF (IHORF == 0) THEN
         PRINT *,'RIDERS WERE HOSTILE -- CHECK FOR LOSSES.'
         IF (IAMMU < 0) THEN
