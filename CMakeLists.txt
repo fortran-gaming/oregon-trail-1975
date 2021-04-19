@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.13)
 project(OregonTrail LANGUAGES Fortran)
 include(CTest)
 
+if(CMAKE_Fortran_COMPILER_ID STREQUAL GNU)
+  add_compile_options(-Werror=line-truncation)
+endif()
+
 add_executable(oregon_trail_1975 src/oregon-trail-1975.f)
 
 add_test(NAME Fortran1975
