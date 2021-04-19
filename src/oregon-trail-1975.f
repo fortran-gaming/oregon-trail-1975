@@ -18,6 +18,8 @@ C     LICENCE: ISC
 C     ******************************************************************
       module game75
 
+      use, intrinsic :: iso_fortran_env, only : stdin=>input_unit
+
       implicit none
 
 
@@ -74,8 +76,11 @@ C     READS USER INPUT AND RETURNS .TRUE. IF INPUT STARTS WITH "Y" AND
 C     .FALSE. IF WITH "N".
 C
       CHARACTER :: A
+      integer :: N
+
       do
-        READ (*, '(A1)') A
+        READ(stdin, '(A1)', iostat=N) A
+        if(IS_IOSTAT_END(N)) stop "thanks for playing"
 
         select case (A)
         case ('Y','y')
@@ -97,7 +102,8 @@ C
       INTEGER, intent(in) :: MIN, MAX
       INTEGER :: N
    10 CONTINUE
-      READ (*, '(I5)', IOSTAT=N) INPUT
+      read(stdin, '(I5)', IOSTAT=N) INPUT
+      if(IS_IOSTAT_END(N)) stop "thanks for playing"
       IF (N /= 0) THEN
         PRINT *,'INVALID.'
         GOTO 10
@@ -144,6 +150,7 @@ C     SHOOT STUFF BY LETTING THE PLAYER ENTER INSTANCES OF ONOMATOPOEIA.
 C
       INTEGER, intent(in) :: ILEVL
       CHARACTER(4) :: A
+      integer :: N
       character(4), parameter :: S(4) = [character(4) ::
      &  'BANG','BLAM','POW','WHAM']
       INTEGER     R, T1, T2
@@ -151,7 +158,8 @@ C
       R = INT(RAND() * 4 + 1)
       PRINT *,'TYPE: ',S(R)
       T1 = TIME()
-      READ (*, '(A4)') A
+      read(stdin, '(A4)', iostat=N) A
+      !! bad input will get shoot=9
       T2 = TIME()
       SHOOT = (ABS(T2 - T1) * 2) - ILEVL - 1
       CALL UPPER(A)
@@ -365,7 +373,8 @@ C
 C     OUTPUTS THE GAME INSTRUCTIONS.
 C
       CHARACTER, parameter :: Q = CHAR(39)
-  100 FORMAT (A)
+      integer :: N
+
       PRINT *,'THIS PROGRAM SIMULATES A TRIP OVER THE OREGON TRAIL FROM'
       PRINT *,'INDEPENDENCE, MISSOURI TO OREGON CITY, OREGON IN 1847.'
       PRINT *,'YOUR FAMILY OF FIVE WILL COVER THE 2040 MILE OREGON'
@@ -379,7 +388,7 @@ C
       PRINT *,'FOLLOWING ITEMS:'
       PRINT *,' '
       PRINT *,'PRESS [RETURN] KEY.'
-      READ (*, 100)
+      read(stdin, '(1X)', iostat=N)
       PRINT *,'  OXEN - YOU CAN SPEND $200-$300 ON YOUR TEAM. THE MORE'
       PRINT *,'         YOU SPEND, THE FASTER YOU',Q,'LL GO BECAUSE'
       PRINT *,'         YOU',Q,'LL HAVE BETTER ANIMALS.'
@@ -400,7 +409,7 @@ C
       PRINT *,'         EMERGENCY REPAIRS.'
       PRINT *,' '
       PRINT *,'PRESS [RETURN] KEY.'
-      READ (*, 100)
+      read(stdin, '(1X)', iostat=N)
       PRINT *,'YOU CAN SPEND ALL YOUR MONEY BEFORE YOU START YOUR'
       PRINT *,'TRIP -- OR YOU CAN SAVE SOME OF YOUR CASH TO SPEND AT'
       PRINT *,'FORTS ALONG THE WAY WHEN YOU RUN LOW. HOWEVER, ITEMS'
@@ -421,7 +430,7 @@ C
       PRINT *,'GOOD LUCK!!'
       PRINT *,' '
       PRINT *,'PRESS [RETURN] KEY.'
-      READ (*, 100)
+      read(stdin, '(1X)', iostat=N)
       END
 C     ******************************************************************
       SUBROUTINE PLAY()
