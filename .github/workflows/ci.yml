@@ -3,9 +3,11 @@ name: ci
 on:
   push:
     paths:
-      - "**/*.bas"
-      - "**/*.f"
-      - "**/*.f90"
+      - "**.bas"
+      - "**.f"
+      - "**.f90"
+      - "**.cmake"
+      - "**/CMakeLists.txt"
       - ".github/workflows/ci.yml"
 
 jobs:
@@ -13,12 +15,10 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
     - run: |
-        sudo apt -yq update > /dev/null
-        sudo apt install -yq --no-install-recommends bwbasic > /dev/null
+        sudo apt update
+        sudo apt install --no-install-recommends bwbasic
 
-    - run: cmake -B build
-    - run: cmake --build build
-    - run: ctest --test-dir build
+    - run: cmake --workflow --preset default

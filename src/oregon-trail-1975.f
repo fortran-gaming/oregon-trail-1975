@@ -134,9 +134,9 @@ C
       LEVEL = INPUT(1, 5)
       END
 C     ******************************************************************
-      real FUNCTION RAND()
+      impure elemental real FUNCTION RAND()
       call random_number(rand)
-      END function rand
+      end function rand
 
       integer function time()
       real :: r
@@ -825,8 +825,8 @@ C     ******************************************************************
 
       END subroutine upper
 
-
       end module game75
+
 
       PROGRAM OREGON
 
