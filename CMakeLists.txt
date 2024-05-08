@@ -1,17 +1,12 @@
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.19)
 
 project(OregonTrail LANGUAGES Fortran)
 
 enable_testing()
 
-# --- auto-ignore build directory
-if(NOT EXISTS ${PROJECT_BINARY_DIR}/.gitignore)
-  file(WRITE ${PROJECT_BINARY_DIR}/.gitignore "*")
-endif()
-
-if(CMAKE_Fortran_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-Werror=line-truncation -fimplicit-none)
-endif()
+add_compile_options(
+"$<$<Fortran_COMPILER_ID:GNU>:-Werror=line-truncation;-fimplicit-none>"
+)
 
 add_executable(oregon_trail_1975 src/oregon-trail-1975.f)
 
@@ -31,3 +26,5 @@ add_test(NAME Basic1975
     -P ${CMAKE_CURRENT_SOURCE_DIR}/cmake/execute.cmake
   )
 set_property(TEST Basic1975 PROPERTY DISABLED $<NOT:$<BOOL:${basic_exe}>>)
+
+file(GENERATE OUTPUT .gitignore CONTENT "*")
