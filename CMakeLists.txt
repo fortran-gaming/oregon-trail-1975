@@ -10,6 +10,8 @@ add_compile_options(
 
 add_executable(oregon_trail_1975 src/oregon-trail-1975.f)
 
+add_executable(oregon_trail_1978 src/oregon-trail-1978.f90)
+
 add_test(NAME Fortran1975
 COMMAND ${CMAKE_COMMAND}
   -Dexe:FILEPATH=$<TARGET_FILE:oregon_trail_1975>
